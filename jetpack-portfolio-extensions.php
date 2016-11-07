@@ -5,10 +5,10 @@ Plugin URI:
 Description: Enhances the Jetpack Portfolio custom post type with support for excerpts, markdown, revisions, and more.
 Version: 0.3
 Author: Frankie Winters
-Author Email: support@frankie.winters.fyi
+Author Email: support@winters.design
 License:
 
-  Copyright 2011  (support@danieleckhart.com)
+  Copyright 2011  
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License, version 2, as
@@ -71,6 +71,7 @@ class JetpackPortfolioExtensions {
 		add_post_type_support( 'jetpack-portfolio', array(
 			'excerpt',
 			'revisions',
+			'post-formats',
 			'wpcom-markdown'
 		));
 	}
