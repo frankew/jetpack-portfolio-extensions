@@ -1,0 +1,13 @@
+.portfolio-tag-list {
+	list-style: none;
+	margin-left: 0;
+}
+
+.portfolio-tag-list a {
+	padding: 1ex 1em;
+	background-color: rgba(0, 0, 0, 0.04);
+	margin-bottom: 1ex;
+	display: inline-block;
+	font-size: .8em;
+	font-weight: 400;
+}
