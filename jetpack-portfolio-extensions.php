@@ -12,7 +12,7 @@ Author Email: support@winters.design
 /**
  * Runs when the plugin is initialized
  */
-add_action(‘init’, init_wintersdesign_jetpack_portfolio_extensions);
+add_action('init', 'init_wintersdesign_jetpack_portfolio_extensions');
 function init_wintersdesign_jetpack_portfolio_extensions() {
 	wintersdesign_upgrade_jetpack_portfolio();
 }
@@ -20,17 +20,16 @@ function init_wintersdesign_jetpack_portfolio_extensions() {
 /**
  * Register style on initialization
  */
-function wintersdesign_portext_register_script() {
+function wintersdesign_portfolio_register_script() {
     wp_register_style( 'jetpack-portfolio-extension', plugins_url('/jetpack-portfolio-extension.css', __FILE__), false, '1.0.0', 'all');
 }
-add_action('init', 'wintersdesign_portext_register_script');
+add_action('init', 'wintersdesign_portfolio_register_script');
 
 
 /* Add Excepts and Markdown to Jetpack Portfolio Items */
 function wintersdesign_upgrade_jetpack_portfolio() {
 	add_post_type_support( 'jetpack-portfolio', array(
-		'excerpt',
-		'revisions'
+		'excerpt'
 	));
 }
 
