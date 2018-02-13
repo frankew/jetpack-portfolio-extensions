@@ -21,9 +21,14 @@ function init_wintersdesign_jetpack_portfolio_extensions() {
  * Register style on initialization
  */
 function wintersdesign_portfolio_register_script() {
-    wp_register_style( 'jetpack-portfolio-extension', plugins_url('/jetpack-portfolio-extension.css', __FILE__), false, '1.0.0', 'all');
+    wp_register_style( 'jetpack-portfolio-extension', plugins_url('/jetpack-portfolio-extensions.css', __FILE__), false, '2.0', 'all');
 }
 add_action('init', 'wintersdesign_portfolio_register_script');
+
+// function winterdesign_portfolio_enqueue_style(){
+// 	wp_enqueue_style('jetpack-portfolio-extension');
+// }
+// add_action('wp_enqueue_scripts', 'winterdesign_portfolio_enqueue_style', 40);
 
 
 /* Add Excepts and Markdown to Jetpack Portfolio Items */
@@ -48,6 +53,7 @@ add_shortcode( 'list_project_tags', 'wintersdesign_list_project_tags' );
  * Adds a shortcode `list_all_project_types` to display them
  */
 function wintersdesign_list_all_project_types() {
+	wp_enqueue_style( 'jetpack-portfolio-extension' );
 	$terms = get_terms('jetpack-portfolio-type', array('hide_empty' => true));
 	if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
 	    $term_list = '<ul class="project-type-list">';
@@ -59,7 +65,7 @@ function wintersdesign_list_all_project_types() {
           $term_list .= '<li class="project-type' . $term_list_item_class . '"><a href="' . esc_url( get_term_link( $term ) ) . '" alt="' . esc_attr( sprintf( __( 'View all post filed under %s', 'twentysixteen' ), $term->name ) ) . '">' . $term->name . '</a></li>';
 	    }
 	    $term_list .= '</ul>';
-	    echo $term_list;
+	    return $term_list;
 	}
 }
 add_shortcode( 'list_all_project_types', 'wintersdesign_list_all_project_types' );

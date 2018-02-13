@@ -11,3 +11,30 @@
 	font-size: .8em;
 	font-weight: 400;
 }
+
+/*  Project Type List Shortcode */
+.project-type-list {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    margin: 0 auto 3em;
+    flex-wrap: wrap;
+}
+
+.project-type-list li a {
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 1em;
+    box-shadow: none;
+    font-size: .875rem;
+    margin-right: 1ex;
+    padding: 1ex 1.5ex;
+    line-height: 2.6em;
+}
+
+.project-type-list li:last-child a {
+    margin-right: 0;
+}
+
+.project-type-list .current-type {
+    display: none;
+}
