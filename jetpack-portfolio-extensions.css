@@ -1,3 +1,5 @@
+
+
 .portfolio-tag-list {
 	list-style: none;
 	margin-left: 0;
@@ -12,29 +14,42 @@
 	font-weight: 400;
 }
 
+.portfolio-tag-list a:hover {
+	background: rgba(0, 0, 0, 0.08);
+}
+
+.project-excerpt {
+	font-size: 1.6em;
+}
+
 /*  Project Type List Shortcode */
 .project-type-list {
     display: flex;
-    list-style: none;
     justify-content: center;
     margin: 0 auto 3em;
     flex-wrap: wrap;
+    list-style: none;
+    margin: 3em auto;
 }
 
 .project-type-list li a {
     background: rgba(0, 0, 0, 0.04);
-    border-radius: 1em;
-    box-shadow: none;
+    border-radius: 1ex;
+    box-shadow: none !important;
     font-size: .875rem;
     margin-right: 1ex;
     padding: 1ex 1.5ex;
     line-height: 2.6em;
 }
 
+.project-type-list li a:hover {
+	background: rgba(0, 0, 0, 0.08);
+}
+
 .project-type-list li:last-child a {
     margin-right: 0;
 }
 
-.project-type-list .current-type {
+/*.project-type-list .current-type {
     display: none;
-}
+}*/
