@@ -33,6 +33,10 @@ add_action('init', 'wd_jpe_register_script');
  *
  */
 function wd_jpe_customize_register($wp_customize){
+	$wp_customize->add_section( 'wd_jpe_options' , array(
+    'title'      => __('Portfolio Options',''),
+    'priority'   => 200,
+) );
 	$wp_customize->add_setting( 'wd_jpe_excerpt', array(
 	  'capability' => 'edit_wd_jpe__options',
 	  'sanitize_callback' => 'wd_jpe_slug_sanitize_checkbox',
@@ -40,12 +44,13 @@ function wd_jpe_customize_register($wp_customize){
 
 	$wp_customize->add_control( 'wd_jpe_excerpt', array(
 	  'type' => 'checkbox',
-	  'section' => 'theme_options', // Add a default or your own section
-	  'label' => __( 'Portfolio Excerpts' ),
+	  'section' => 'wd_jpe_options',
+	  'label' => __( 'Show Portfolio Excerpts' ),
 	  'description' => __( 'On single project pages, show the custom excerpt between the project title and content.' ),
 	) );
 }
 function wd_jpe_slug_sanitize_checkbox( $checked ) {
+	// enforce boolean value
   return ( ( isset( $checked ) && true == $checked ) ? true : false );
 }
 add_action('customize_register', 'wd_jpe_customize_register');
