@@ -88,15 +88,19 @@ add_shortcode( 'list_project_tags', 'wd_jpe_list_project_tags' );
  */
 function wd_jpe_shortcode_list_all_project_types() {
 	wp_enqueue_style( 'jetpack-portfolio-extension' );
-	$terms = get_terms('jetpack-portfolio-type', array('hide_empty' => true));
+	$terms = get_terms( array(
+		'taxonomy' => 'jetpack-portfolio-type',
+		'hide_empty' => true
+	) );
 	if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
 	    $term_list = '<ul class="project-type-list">';
 	    foreach ( $terms as $term ) {
 			$term_list_item_class = '';
+				// Add CSS hook to mark current type as active
 		    if (is_tax( 'jetpack-portfolio-type', $term->slug ) ) {
 		    	$term_list_item_class .= " current-type";
 		    }
-          $term_list .= '<li class="project-type' . $term_list_item_class . '"><a href="' . esc_url( get_term_link( $term ) ) . '" alt="' . esc_attr( sprintf( __( 'View all post filed under %s', 'twentysixteen' ), $term->name ) ) . '">' . $term->name . '</a></li>';
+        $term_list .= '<li class="project-type' . $term_list_item_class . '"><a href="' . esc_url( get_term_link( $term ) ) . '" alt="' . esc_attr( sprintf( __( 'View all post filed under %s', 'twentysixteen' ), $term->name ) ) . '">' . $term->name . '</a></li>';
 	    }
 	    $term_list .= '</ul>';
 	    return $term_list;
