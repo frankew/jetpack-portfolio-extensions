@@ -95,12 +95,12 @@ function wd_jpe_shortcode_list_all_project_types() {
 	if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
 	    $term_list = '<ul class="project-type-list">';
 	    foreach ( $terms as $term ) {
-			$term_list_item_class = '';
+			$term_list_item_class = $term->slug;
 				// Add CSS hook to mark current type as active
 		    if (is_tax( 'jetpack-portfolio-type', $term->slug ) ) {
-		    	$term_list_item_class .= " current-type";
+		    	$term_list_item_class .= "current-type";
 		    }
-        $term_list .= '<li class="project-type' . $term_list_item_class . '"><a href="' . esc_url( get_term_link( $term ) ) . '" alt="' . esc_attr( sprintf( __( 'View all post filed under %s', 'twentysixteen' ), $term->name ) ) . '">' . $term->name . '</a></li>';
+        $term_list .= '<li class="project-type ' . $term_list_item_class . '" data-filter=".type-' . $term->slug . '"><a href="' . esc_url( get_term_link( $term ) ) . '" alt="' . esc_attr( sprintf( __( 'View all post filed under %s', 'twentysixteen' ), $term->name ) ) . '">' . $term->name . '</a></li>';
 	    }
 	    $term_list .= '</ul>';
 	    return $term_list;
