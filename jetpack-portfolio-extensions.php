@@ -2,7 +2,7 @@
 /*
 Plugin Name: Jetpack Portfolio Extensions
 Plugin URI:
-Description: Enhances the Jetpack Portfolio custom post type with support for two shortcodes: `list_project_tags` and `list_all_project_types`.
+Description: Enhances Jetpack Portfolio with masonry-style layout and two shortcodes: `the_project_tags` and `list_project_types`.
 Version: 0.4
 Author: Frankie Winters
 Author Email: support@winters.design
@@ -19,6 +19,19 @@ function wd_jpe_register_script() {
 add_action('init', 'wd_jpe_register_script');
 
 /**
+ * Block default Jetpack shortcode styles
+ */
+ function wd_jpe_remove_jetpack_styles($href) {
+  //  wp_deregister_style( 'jetpack-portfolio-style' ); // Could not get these to work. :(
+  //  wp_dequeue_style( 'jetpack-portfolio-style' ); //
+  if(strpos($href, "portfolio-shortcode.css") == false) {
+    return $href;
+  }
+  return false;
+}
+add_filter( 'style_loader_src', 'wd_jpe_remove_jetpack_styles' );
+
+/**
  * Include js to active isotope if theme option is enabled
  */
 function wd_jpe_enqueue_scripts() {
@@ -30,7 +43,8 @@ add_action('wp_enqueue_scripts', 'wd_jpe_enqueue_scripts');
 
 /**
  * Add options to the Customizer
- *
+ * - wd_jpe_show_excerpt?
+ * - wd_jpe_use_isotope?
  */
 function wd_jpe_customize_register($wp_customize){
 	$wp_customize->add_section( 'wd_jpe_options' , array(
@@ -55,7 +69,7 @@ function wd_jpe_customize_register($wp_customize){
 	  'type' => 'checkbox',
 	  'section' => 'wd_jpe_options',
 	  'label' => __( 'Isotope Portfolio Shortcode' ),
-	  'description' => __( 'Use jQuery Isotope to upgrade the [jetpack_portfolio] shortcode with responsive masonry-style layout (filterable when used with the [list_all_project_types] shortcode.)' ),
+	  'description' => __( 'Use jQuery Isotope to upgrade the [jetpack_portfolio] shortcode with responsive masonry-style layout (filterable when used with the [list_project_types] shortcode.)' ),
 	) );
 
 }
@@ -84,17 +98,17 @@ add_filter( 'the_content', 'wd_jpe_show_excerpt' );
 
 /**
  * Print a list of Jetpack Project Tags associated with a single portfolio item.
- * Add a shortcode `list_project_tags` to display them
+ * Add a shortcode `the_project_tags` to display them
  */
 function wd_jpe_shortcode_list_project_tags() {
   wp_enqueue_style( 'jetpack-portfolio-extensions' );
 	echo get_the_term_list($post->ID, 'jetpack-portfolio-tag', '<ul class="portfolio-tag-list"><li>', '</li><li>', '</li></ul>' );
 }
-add_shortcode( 'list_project_tags', 'wd_jpe_list_project_tags' );
+add_shortcode( 'the_project_tags', 'wd_jpe_list_project_tags' );
 
 /**
- * Print a list of Jetpack Project Tags
- * Add a shortcode `list_all_project_types` to display them
+ * Print a list of Jetpack Project Types
+ * Add a shortcode `list_project_types` to display them
  */
 function wd_jpe_shortcode_list_all_project_types() {
 	wp_enqueue_style( 'jetpack-portfolio-extensions' );
@@ -119,6 +133,6 @@ function wd_jpe_shortcode_list_all_project_types() {
 	    return $term_list;
 	}
 }
-add_shortcode( 'list_all_project_types', 'wd_jpe_shortcode_list_all_project_types' );
+add_shortcode( 'list_project_types', 'wd_jpe_shortcode_list_all_project_types' );
 
 ?>
