@@ -6,8 +6,6 @@
     License: GPLv3
     License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Enhances Jetpack Portfolio with Isotope layout, live filtering, and two shortcodes: [the_project_tags] and [list_project_types].
-
 ## Description
 
 Enhances Jetpack Portfolio with [Isotope](https://isotope.metafizzy.co) layout, live filtering,  and two shortcodes: [the_project_tags] and [list_project_types].
