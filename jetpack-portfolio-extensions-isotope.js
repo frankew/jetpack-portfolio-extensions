@@ -9,10 +9,11 @@ jQuery(document).ready(function() {
                 columnWidth: '.portfolio-entry'
             }
         });
-        // When the a link in the [list_all_project_types] shortcode is clicked
-        // Filter the adjoining [jetpack_portfolio].
+        // When the a link in the [list_all_project_types] shortcode is
+        // clicked, filter the adjoining [jetpack_portfolio].
         jQuery('.project-type-list li').click(function() {
             // Find the next jetpack portfolio container in the document.
+            // Note! There's an assumption about markup here for the sake of flexiblity.
             var $filterableContainer = jQuery(this).parent().next('.jetpack-portfolio-shortcode');
             var selector = jQuery(this).attr('data-filter');
             $filterableContainer.isotope({

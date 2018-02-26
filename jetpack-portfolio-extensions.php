@@ -5,7 +5,8 @@ Plugin URI: https://bitbucket.org/wintersdesign/jetpack-portfolio-extensions/
 Description: Enhances Jetpack Portfolio with Isotope layout and live filtering, and two shortcodes: [the_project_tags] and [list_project_types].
 Version: 0.4
 Author: Frankie Winters
-Author Email: support@winters.design
+Author URI: https://frankie.winters.design
+Author Email: frankie@winters.design
 */
 
 /**
