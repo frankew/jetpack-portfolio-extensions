@@ -2,7 +2,7 @@
 /*
 Plugin Name: Jetpack Portfolio Extensions
 Plugin URI:
-Description: Enhances Jetpack Portfolio with masonry-style layout and two shortcodes: `the_project_tags` and `list_project_types`.
+  Description: Enhances Jetpack Portfolio with masonry-style layout and two shortcodes: `the_project_tags` and `list_project_types`.
 Version: 0.4
 Author: Frankie Winters
 Author Email: support@winters.design
