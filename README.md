@@ -1,5 +1,5 @@
 # Jetpack Portfolio Extensions
-Tags: jetpack, portfolio, isotope, jetpack-project-types, jetpack-project-tags, shortcodes
+Tags: jetpack, portfolio, isotope, masonry, filterable, jetpack-project-types, jetpack-project-tags,
 Requires at least: 4.9
 Tested up to: 4.9.4
 Requires PHP: 7.0.27
@@ -30,5 +30,5 @@ Find in the Customizer -> Portfolio Options.
 
 ### Shortcodes
 
- - `[list_project_types]`: Prints a list of all Jetpack 'Project Types'. CSS `.project-type-list`.
- - `[the_project_tags]`: Prints a list of Jetpack 'Project Tags' associated with a single portfolio item. CSS `.project-tag-list`.
+ - `[list_project_types]` Prints a list of all Jetpack 'Project Types'. CSS `.project-type-list`.
+ - `[the_project_tags]` Prints a list of Jetpack 'Project Tags' associated with a single portfolio item. CSS `.project-tag-list`.

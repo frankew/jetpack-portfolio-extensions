@@ -9,6 +9,18 @@ Author URI: https://frankie.winters.design
 Author Email: frankie@winters.design
 */
 
+
+/**
+ * Runs when the plugin is initialized
+ */
+function wd_jetpack_portfolio_extensions_init() {
+  // Add Excerpts to Jetpack Portfolio Items
+	add_post_type_support( 'jetpack-portfolio', array(
+		'excerpt'
+	));
+}
+add_action('init', 'wd_jetpack_portfolio_extensions_init');
+
 /**
  * Register styles on 'init'
  */
@@ -72,7 +84,6 @@ function wd_jpe_customize_register($wp_customize){
 	  'label' => __( 'Use Isotope' ),
 	  'description' => __( 'Use jQuery <a href="https://isotope.metafizzy.co">Isotope</a> for tiled portfolio layout and filtering. (Filterable when used with the [list_project_types] shortcode.)' ),
 	) );
-
 }
 function wd_jpe_slug_sanitize_checkbox( $checked ) {
 	// enforce boolean value
