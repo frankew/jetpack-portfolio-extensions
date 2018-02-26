@@ -14,10 +14,10 @@ Enhances Jetpack Portfolio with [Isotope](https://isotope.metafizzy.co) layout, 
 
 When installed, this plugin will override the default layout for jetpack portfolio shortcodes. This means the `columns` option of the shortcode will be ignored. Projects will be displayed in responsive columns with the following breakpoints:
 
-    min-width:40em  /\* 2 columns \*/
-    min-width:60em  /\* 3 columns \*/
-    min-width:90em  /\* 4 columns \*/
-    min-width:120em /\* 5 columns \*/
+    min-width:40em  /* 2 columns */
+    min-width:60em  /* 3 columns */
+    min-width:90em  /* 4 columns */
+    min-width:120em /* 5 columns */
 
 To enable a tiled, masonry-style layout, tick the Use Isotope box in the options. For live filtering, place a `[list_project_types]` shortcode just above your `[jetpack_portfolio]` shortcode.
 
