@@ -1,10 +1,10 @@
 # Jetpack Portfolio Extensions
-Tags: jetpack, portfolio, isotope, masonry, filterable, jetpack-project-types, jetpack-project-tags,
-Requires at least: 4.9
-Tested up to: 4.9.4
-Requires PHP: 7.0.27
-License: GPLv3
-License URI: https://www.gnu.org/licenses/gpl-3.0.html
+    Tags: jetpack, portfolio, isotope, masonry, filterable, jetpack-project-types, jetpack-project-tags,
+    Requires at least: 4.9
+    Tested up to: 4.9.4
+    Requires PHP: 7.0.27
+    License: GPLv3
+    License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Enhances Jetpack Portfolio with Isotope layout, live filtering, and two shortcodes: [the_project_tags] and [list_project_types].
 
