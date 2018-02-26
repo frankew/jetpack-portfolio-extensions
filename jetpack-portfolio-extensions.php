@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Jetpack Portfolio Extensions
-Plugin URI:
-  Description: Enhances Jetpack Portfolio with masonry-style layout and two shortcodes: `the_project_tags` and `list_project_types`.
+Plugin URI: https://bitbucket.org/wintersdesign/jetpack-portfolio-extensions/
+Description: Enhances Jetpack Portfolio with Isotope layout and live filtering, and two shortcodes: [the_project_tags] and [list_project_types].
 Version: 0.4
 Author: Frankie Winters
 Author Email: support@winters.design
@@ -58,7 +58,7 @@ function wd_jpe_customize_register($wp_customize){
 	$wp_customize->add_control( 'wd_jpe_show_excerpt', array(
 	  'type' => 'checkbox',
 	  'section' => 'wd_jpe_options',
-	  'label' => __( 'Show Excerpts' ),
+	  'label' => __( 'Show Excerpt on Single Project Pages' ),
 	  'description' => __( 'On single project pages, show the custom excerpt between the project title and content.' ),
 	) );
   // Use Isotope?
@@ -68,8 +68,8 @@ function wd_jpe_customize_register($wp_customize){
 	$wp_customize->add_control( 'wd_jpe_use_isotope', array(
 	  'type' => 'checkbox',
 	  'section' => 'wd_jpe_options',
-	  'label' => __( 'Isotope Portfolio Shortcode' ),
-	  'description' => __( 'Use jQuery Isotope to upgrade the [jetpack_portfolio] shortcode with responsive masonry-style layout (filterable when used with the [list_project_types] shortcode.)' ),
+	  'label' => __( 'Use Isotope' ),
+	  'description' => __( 'Use jQuery <a href="https://isotope.metafizzy.co">Isotope</a> for tiled portfolio layout and filtering. (Filterable when used with the [list_project_types] shortcode.)' ),
 	) );
 
 }
