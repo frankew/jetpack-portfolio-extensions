@@ -27,7 +27,7 @@ add_action('init', 'wd_jetpack_portfolio_extensions_init');
 function wd_jpe_register_script() {
     wp_register_style( 'jetpack-portfolio-extensions', plugins_url('/jetpack-portfolio-extensions.css', __FILE__), false, '3.0', 'all');
     wp_register_script( 'isotope', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.5/isotope.pkgd.min.js', array( 'jquery' ), null, true );
-    wp_register_script( 'jetpack-portfolio-extensions-isotope', plugin_dir_url( __FILE__ ) . 'jetpack-portfolio-extensions-isotope.js', array( 'isotope' ), 1.0, true );
+    wp_register_script( 'jetpack-portfolio-extensions-isotope', plugin_dir_url( __FILE__ ) . 'jetpack-portfolio-extensions-isotope.js', array( 'isotope' ), 1.2, true );
 }
 add_action('init', 'wd_jpe_register_script');
 
@@ -146,5 +146,18 @@ function wd_jpe_shortcode_list_all_project_types() {
 	}
 }
 add_shortcode( 'list_project_types', 'wd_jpe_shortcode_list_all_project_types' );
+
+/**
+ * Add Jetpack Tags to Jetpack Shortcode Entry Markup
+ */
+function wd_jpe_shortcode_entry_class($class) {
+    $classes = explode( " ", $class);
+    $jetpack_tags = get_the_terms($post, 'jetpack-portfolio-tag');
+    foreach ($jetpack_tags as $term) {
+      $classes[] = 'tag-'.$term->slug;
+    }
+    return implode( " ", $classes);
+}
+add_filter('portfolio-project-post-class', 'wd_jpe_shortcode_entry_class');
 
 ?>

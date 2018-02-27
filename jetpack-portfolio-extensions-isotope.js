@@ -9,6 +9,8 @@ jQuery(document).ready(function() {
                 columnWidth: '.portfolio-entry'
             }
         });
+
+
         // When the a link in the [list_all_project_types] shortcode is
         // clicked, filter the adjoining [jetpack_portfolio].
         jQuery('.project-type-list li').click(function() {
@@ -24,5 +26,7 @@ jQuery(document).ready(function() {
             jQuery(this).addClass('active');
             return false;
         });
+        // Set featured type initially active.
+        jQuery('.project-type-list li[data-filter=".type-featured"]').click();
     });
 });

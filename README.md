@@ -2,7 +2,7 @@
     Tags: jetpack, portfolio, isotope, masonry, filterable, jetpack-project-types, jetpack-project-tags,
     Requires at least: 4.9
     Tested up to: 4.9.4
-    Requires PHP: 7.0.27
+    Requires PHP: 7.0
     License: GPLv3
     License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -18,6 +18,8 @@ When installed, this plugin will override the default layout for jetpack portfol
     min-width:120em /* 5 columns */
 
 To enable a tiled, masonry-style layout, tick the Use Isotope box in the options. For live filtering, place a `[list_project_types]` shortcode just above your `[jetpack_portfolio]` shortcode.
+
+The plugin also adds classes for Jetpack Project Tags to the `[jetpack_portfolio]` project entry markup. 
 
 ### Options
 
