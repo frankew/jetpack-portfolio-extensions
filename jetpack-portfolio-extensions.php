@@ -153,9 +153,11 @@ add_shortcode( 'list_project_types', 'wd_jpe_shortcode_list_all_project_types' )
 function wd_jpe_shortcode_entry_class($class) {
     $classes = explode( " ", $class);
     $jetpack_tags = get_the_terms($post, 'jetpack-portfolio-tag');
-    foreach ($jetpack_tags as $term) {
-      $classes[] = 'tag-'.$term->slug;
-    }
+		if (is_array($jetpack_tags)) {
+			foreach ($jetpack_tags as $term) {
+				$classes[] = 'tag-'.$term->slug;
+			}
+		}
     return implode( " ", $classes);
 }
 add_filter('portfolio-project-post-class', 'wd_jpe_shortcode_entry_class');
