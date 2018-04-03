@@ -9,15 +9,14 @@ Author URI: https://frankie.winters.design
 Author Email: frankie@winters.design
 */
 
-
 /**
  * Runs when the plugin is initialized
  */
 function wd_jetpack_portfolio_extensions_init() {
   // Add Excerpts to Jetpack Portfolio Items
-	add_post_type_support( 'jetpack-portfolio', array(
-		'excerpt'
-	));
+	// add_post_type_support( 'jetpack-portfolio', array(
+	// 	'excerpt'
+	// ));
 }
 add_action('init', 'wd_jetpack_portfolio_extensions_init');
 
@@ -35,8 +34,8 @@ add_action('init', 'wd_jpe_register_script');
  * Block default Jetpack shortcode styles
  */
  function wd_jpe_remove_jetpack_styles($href) {
-  //  wp_deregister_style( 'jetpack-portfolio-style' ); // Could not get these to work. :(
-  //  wp_dequeue_style( 'jetpack-portfolio-style' ); //
+  //  wp_deregister_style( 'jetpack-portfolio-style' ); // Could not get these to work consistently. :(
+  //  wp_dequeue_style( 'jetpack-portfolio-style' );
   if(strpos($href, "portfolio-shortcode.css") == false) {
     return $href;
   }
@@ -98,6 +97,8 @@ function wd_jpe_show_excerpt( $content ) {
 	if ( get_theme_mod( 'wd_jpe_show_excerpt' ) == 0 ) { //
     return $content;
 	}
+  global $post;
+  $post_id = get_the_ID($post);
 	if ( ('jetpack-portfolio' == get_post_type($post_id) ) && ( has_excerpt($post_id) )) {
 		wp_enqueue_style( 'jetpack-portfolio-extensions' );
 		$excerpt = get_the_excerpt($post_id);
@@ -151,13 +152,16 @@ add_shortcode( 'list_project_types', 'wd_jpe_shortcode_list_all_project_types' )
  * Add Jetpack Tags to Jetpack Shortcode Entry Markup
  */
 function wd_jpe_shortcode_entry_class($class) {
+	global $post;
     $classes = explode( " ", $class);
+		$classes = array_diff($classes, ['portfolio-entry-column-1', 'portfolio-entry-first-item-row']);
     $jetpack_tags = get_the_terms($post, 'jetpack-portfolio-tag');
 		if (is_array($jetpack_tags)) {
 			foreach ($jetpack_tags as $term) {
 				$classes[] = 'tag-'.$term->slug;
 			}
 		}
+		$classes[] = $post->post_name;
     return implode( " ", $classes);
 }
 add_filter('portfolio-project-post-class', 'wd_jpe_shortcode_entry_class');
