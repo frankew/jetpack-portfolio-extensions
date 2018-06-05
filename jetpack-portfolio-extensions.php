@@ -140,7 +140,7 @@ function wd_jpe_shortcode_list_all_project_types() {
 		    if (is_tax( 'jetpack-portfolio-type', $term->slug ) ) {
 		    	$term_list_item_class .= "current-type";
 		    }
-        $term_list .= '<li class="project-type ' . $term_list_item_class . '" data-filter=".type-' . $term->slug . '"><a href="' . esc_url( get_term_link( $term ) ) . '" alt="' . esc_attr( sprintf( __( 'View all post filed under %s', 'twentysixteen' ), $term->name ) ) . '">' . $term->name . '</a></li>';
+        $term_list .= '<li class="project-type ' . $term_list_item_class . '" data-filter=".type-' . $term->slug . '"><a href="' . esc_url( get_term_link( $term ) ) . '" title="' . esc_attr( sprintf( __( 'View all post filed under %s', 'twentysixteen' ), $term->name ) ) . '">' . $term->name . '</a></li>';
 	    }
 	    $term_list .= '</ul>';
 	    return $term_list;
