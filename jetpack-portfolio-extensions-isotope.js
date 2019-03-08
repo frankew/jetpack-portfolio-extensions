@@ -26,7 +26,12 @@ jQuery(document).ready(function() {
             jQuery(this).addClass('active');
             return false;
         });
-        // Set featured type initially active.
-        jQuery('.project-type-list li[data-filter=".type-featured"]').click();
+        
+        function selectFeatured() {
+	        // Set featured type initially active.
+	        jQuery('.project-type-list li[data-filter=".type-featured"]').click();
+        }
+        setTimeout(selectFeatured, 1750);
+        
     });
 });

@@ -1,22 +1,18 @@
 <?php
-/*
-Plugin Name: Jetpack Portfolio Extensions
-Plugin URI: https://bitbucket.org/wintersdesign/jetpack-portfolio-extensions/
-Description: Enhances Jetpack Portfolio with Isotope layout and live filtering, and two shortcodes: [the_project_tags] and [list_project_types].
-Version: 0.4
-Author: Frankie Winters
-Author URI: https://frankie.winters.design
-Author Email: frankie@winters.design
+/*	Plugin Name: Jetpack Portfolio Extensions
+	Plugin URI: https://bitbucket.org/wintersdesign/jetpack-portfolio-extensions/
+	Description: Enhances Jetpack Portfolio with Isotope layout and live filtering, and two shortcodes: [the_project_tags] and [list_project_types].
+	Version: 0.4
+	Author: Frankie Winters
+	Author URI: https://frankie.winters.design
+	Author Email: frankie@winters.design
 */
 
 /**
  * Runs when the plugin is initialized
  */
 function wd_jetpack_portfolio_extensions_init() {
-  // Add Excerpts to Jetpack Portfolio Items
-	// add_post_type_support( 'jetpack-portfolio', array(
-	// 	'excerpt'
-	// ));
+
 }
 add_action('init', 'wd_jetpack_portfolio_extensions_init');
 
@@ -49,7 +45,8 @@ add_filter( 'style_loader_src', 'wd_jpe_remove_jetpack_styles' );
 function wd_jpe_enqueue_scripts() {
   if ( get_theme_mod( 'wd_jpe_use_isotope' ) == 1 ) { // true
     wp_enqueue_script('jetpack-portfolio-extensions-isotope');
-  }
+	}
+	wp_enqueue_style( 'jetpack-portfolio-extensions' );
 }
 add_action('wp_enqueue_scripts', 'wd_jpe_enqueue_scripts');
 
@@ -60,10 +57,10 @@ add_action('wp_enqueue_scripts', 'wd_jpe_enqueue_scripts');
  */
 function wd_jpe_customize_register($wp_customize){
 	$wp_customize->add_section( 'wd_jpe_options' , array(
-    'title'      => __('Portfolio Options',''),
-    'priority'   => 200,
-  ) );
-  // Show Excerpt?
+	    'title'      => __('Portfolio Options',''),
+	    'priority'   => 200,
+	) );
+	// Show Excerpt?
 	$wp_customize->add_setting( 'wd_jpe_show_excerpt', array(
 	  'sanitize_callback' => 'wd_jpe_slug_sanitize_checkbox',
 	) );
@@ -73,9 +70,9 @@ function wd_jpe_customize_register($wp_customize){
 	  'label' => __( 'Show Excerpt on Single Project Pages' ),
 	  'description' => __( 'On single project pages, show the custom excerpt between the project title and content.' ),
 	) );
-  // Use Isotope?
-  $wp_customize->add_setting( 'wd_jpe_use_isotope', array(
-	  'sanitize_callback' => 'wd_jpe_slug_sanitize_checkbox',
+	// Use Isotope?
+	$wp_customize->add_setting( 'wd_jpe_use_isotope', array(
+		'sanitize_callback' => 'wd_jpe_slug_sanitize_checkbox',
 	) );
 	$wp_customize->add_control( 'wd_jpe_use_isotope', array(
 	  'type' => 'checkbox',
@@ -85,8 +82,7 @@ function wd_jpe_customize_register($wp_customize){
 	) );
 }
 function wd_jpe_slug_sanitize_checkbox( $checked ) {
-	// enforce boolean value
-  return ( ( isset( $checked ) && true == $checked ) ? true : false );
+	return ( ( isset( $checked ) && true == $checked ) ? true : false );
 }
 add_action('customize_register', 'wd_jpe_customize_register');
 
@@ -95,12 +91,11 @@ add_action('customize_register', 'wd_jpe_customize_register');
  */
 function wd_jpe_show_excerpt( $content ) {
 	if ( get_theme_mod( 'wd_jpe_show_excerpt' ) == 0 ) { //
-    return $content;
+	    return $content;
 	}
-  global $post;
-  $post_id = get_the_ID($post);
+	global $post;
+	$post_id = get_the_ID($post);
 	if ( ('jetpack-portfolio' == get_post_type($post_id) ) && ( has_excerpt($post_id) )) {
-		wp_enqueue_style( 'jetpack-portfolio-extensions' );
 		$excerpt = get_the_excerpt($post_id);
 		$excerpt = "<p class='project-excerpt'>$excerpt<p>";
 		$content = $excerpt . $content;
@@ -114,7 +109,6 @@ add_filter( 'the_content', 'wd_jpe_show_excerpt' );
  * Add a shortcode `the_project_tags` to display them
  */
 function wd_jpe_shortcode_list_project_tags() {
-  wp_enqueue_style( 'jetpack-portfolio-extensions' );
 	echo get_the_term_list($post->ID, 'jetpack-portfolio-tag', '<ul class="portfolio-tag-list"><li>', '</li><li>', '</li></ul>' );
 }
 add_shortcode( 'the_project_tags', 'wd_jpe_list_project_tags' );
@@ -124,23 +118,22 @@ add_shortcode( 'the_project_tags', 'wd_jpe_list_project_tags' );
  * Add a shortcode `list_project_types` to display them
  */
 function wd_jpe_shortcode_list_all_project_types() {
-	wp_enqueue_style( 'jetpack-portfolio-extensions' );
 	$terms = get_terms( array(
 		'taxonomy' => 'jetpack-portfolio-type',
 		'hide_empty' => true
 	) );
 	if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
 	    $term_list = '<ul class="project-type-list">';
-      if ( get_theme_mod( 'wd_jpe_use_isotope' ) == 1 ) { // Use filterable isotope layout
-        $term_list .= '<li class="project-type project-type-filter-all active" data-filter="*"><a href="#">All</a></li>';
+		if ( get_theme_mod( 'wd_jpe_use_isotope' ) == 1 ) { // Use filterable isotope layout
+	        $term_list .= '<li class="project-type project-type-filter-all active" data-filter="*"><a href="#">All</a></li>';
     	}
 	    foreach ( $terms as $term ) {
   			$term_list_item_class = $term->slug;
-				// Add CSS hook to mark current type as active
+			// Add CSS hook to mark current type as active
 		    if (is_tax( 'jetpack-portfolio-type', $term->slug ) ) {
 		    	$term_list_item_class .= "current-type";
 		    }
-        $term_list .= '<li class="project-type ' . $term_list_item_class . '" data-filter=".type-' . $term->slug . '"><a href="' . esc_url( get_term_link( $term ) ) . '" title="' . esc_attr( sprintf( __( 'View all post filed under %s', 'twentysixteen' ), $term->name ) ) . '">' . $term->name . '</a></li>';
+	        $term_list .= '<li class="project-type ' . $term_list_item_class . '" data-filter=".type-' . $term->slug . '"><a href="' . esc_url( get_term_link( $term ) ) . '" title="' . esc_attr( sprintf( __( 'View all post filed under %s', 'twentysixteen' ), $term->name ) ) . '">' . $term->name . '</a></li>';
 	    }
 	    $term_list .= '</ul>';
 	    return $term_list;
@@ -154,14 +147,14 @@ add_shortcode( 'list_project_types', 'wd_jpe_shortcode_list_all_project_types' )
 function wd_jpe_shortcode_entry_class($class) {
 	global $post;
     $classes = explode( " ", $class);
-		$classes = array_diff($classes, ['portfolio-entry-column-1', 'portfolio-entry-first-item-row']);
+	$classes = array_diff($classes, ['portfolio-entry-column-1', 'portfolio-entry-first-item-row']);
     $jetpack_tags = get_the_terms($post, 'jetpack-portfolio-tag');
-		if (is_array($jetpack_tags)) {
-			foreach ($jetpack_tags as $term) {
-				$classes[] = 'tag-'.$term->slug;
-			}
+	if (is_array($jetpack_tags)) {
+		foreach ($jetpack_tags as $term) {
+			$classes[] = 'tag-'.$term->slug;
 		}
-		$classes[] = $post->post_name;
+	}
+	$classes[] = $post->post_name;
     return implode( " ", $classes);
 }
 add_filter('portfolio-project-post-class', 'wd_jpe_shortcode_entry_class');
