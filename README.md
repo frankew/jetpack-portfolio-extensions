@@ -8,18 +8,22 @@
 
 ## Description
 
-Enhances Jetpack Portfolio with [Isotope](https://isotope.metafizzy.co) layout, live filtering,  and two shortcodes: [the_project_tags] and [list_project_types].
+Enhances Jetpack Portfolio with [Isotope](https://isotope.metafizzy.co) layout, live filtering, two shortcodes, and the option to include the excerpt on the portfolio item page.
 
-When installed, this plugin will override the default layout for jetpack portfolio shortcodes. This means the `columns` option of the shortcode will be ignored. Projects will be displayed in responsive columns with the following breakpoints:
+When installed, jetpack portfolio shortcodes will display in a responsive gride. This means the `columns` option of the shortcode will be ignored. Projects will be displayed in columns with the following breakpoints:
 
     min-width:40em  /* 2 columns */
     min-width:60em  /* 3 columns */
     min-width:90em  /* 4 columns */
     min-width:120em /* 5 columns */
 
-To enable a tiled, masonry-style layout, tick the Use Isotope box in the options. For live filtering, place a `[list_project_types]` shortcode just above your `[jetpack_portfolio]` shortcode.
+To enable a tiled, masonry-style layout, tick the Use Isotope box in the options. 
 
 The plugin also adds classes for Jetpack Project Tags to the `[jetpack_portfolio]` project entry markup. 
+
+### Filtering
+
+For live filtering when using Isotope, place a `[list_project_types]` shortcode just above your `[jetpack_portfolio]` shortcode.
 
 ### Options
 
