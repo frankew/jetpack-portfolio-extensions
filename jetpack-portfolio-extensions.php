@@ -109,9 +109,9 @@ add_filter( 'the_content', 'wd_jpe_show_excerpt' );
  * Add a shortcode `the_project_tags` to display them
  */
 function wd_jpe_shortcode_list_project_tags() {
-	echo get_the_term_list($post->ID, 'jetpack-portfolio-tag', '<ul class="portfolio-tag-list"><li>', '</li><li>', '</li></ul>' );
+	return get_the_term_list($post->ID, 'jetpack-portfolio-tag', '<ul class="portfolio-tag-list"><li>', '</li><li>', '</li></ul>' );
 }
-add_shortcode( 'the_project_tags', 'wd_jpe_list_project_tags' );
+add_shortcode( 'the_project_tags', 'wd_jpe_shortcode_list_project_tags' );
 
 /**
  * Print a list of Jetpack Project Types
